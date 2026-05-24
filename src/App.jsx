@@ -1,0 +1,72 @@
+import React, { useEffect } from 'react'
+import Hero3D from './components/Hero3D'
+import Story from './components/Story'
+import Schedule from './components/Schedule'
+import RSVP from './components/RSVP'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
+function App() {
+  useEffect(() => {
+    // Staggered letters animation for the hero text
+    gsap.fromTo('.hero-text-char', 
+      { opacity: 0, y: 50 }, 
+      { opacity: 1, y: 0, duration: 1, ease: 'back.out(1.7)', stagger: 0.05, delay: 0.5 }
+    );
+    
+    // Fade in the rest of the hero elements
+    gsap.fromTo('.hero-fade', 
+      { opacity: 0 }, 
+      { opacity: 1, duration: 1.5, delay: 1.5 }
+    );
+  }, []);
+
+  const heroTitle = "Sara & Mohamed";
+
+  return (
+    <>
+      {/* 3D Scene serves as a fixed background for the hero area */}
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0 }}>
+        <Hero3D />
+      </div>
+
+      {/* Hero Typography Overlay */}
+      <section style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1, background: 'transparent', pointerEvents: 'none' }}>
+        <div className="text-center" style={{ padding: '2rem 4rem' }}>
+          <h1 className="text-gold" style={{ margin: 0, textShadow: '0 2px 10px rgba(255,255,255,0.5)', overflow: 'hidden' }}>
+            {heroTitle.split('').map((char, idx) => (
+              <span key={idx} className="hero-text-char" style={{ display: 'inline-block' }}>
+                {char === ' ' ? '\u00A0' : char}
+              </span>
+            ))}
+          </h1>
+          <p className="hero-fade" style={{ fontSize: '1.5rem', color: 'var(--color-dark)', margin: 0, fontWeight: 'bold' }}>May 1, 2026</p>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div className="hero-fade" style={{ position: 'absolute', bottom: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', opacity: 0.7 }}>
+          <span style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--color-dark)' }}>Scroll to Discover</span>
+          <div style={{ width: '1px', height: '40px', backgroundColor: 'var(--color-gold)' }}></div>
+        </div>
+      </section>
+
+      {/* Content Sections that scroll over the 3D background */}
+      {/* We use transparent background so the 3D rings can still be seen behind the glass panels! */}
+      <div style={{ position: 'relative', zIndex: 2, background: 'transparent' }}>
+        <Story />
+        <Schedule />
+        <RSVP />
+      </div>
+      
+      {/* Footer */}
+      <footer style={{ backgroundColor: 'var(--color-dark)', color: 'var(--color-cream)', textAlign: 'center', padding: '2rem', position: 'relative', zIndex: 2 }}>
+        <p style={{ margin: 0, fontFamily: 'var(--font-heading)', fontSize: '1.2rem' }}>We can't wait to celebrate with you.</p>
+        <p style={{ fontSize: '0.8rem', opacity: 0.6, marginTop: '0.5rem' }}>© 2026 Sara & Mohamed. Crafted with love.</p>
+      </footer>
+    </>
+  )
+}
+
+export default App
