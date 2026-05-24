@@ -35,10 +35,17 @@ function App() {
       {/* Hero Typography Overlay */}
       <section style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 1, background: 'transparent', pointerEvents: 'none' }}>
         <div className="text-center" style={{ padding: '2rem 4rem' }}>
-          <h1 className="text-gold" style={{ margin: 0, textShadow: '0 2px 10px rgba(255,255,255,0.5)', overflow: 'hidden' }}>
-            {heroTitle.split('').map((char, idx) => (
-              <span key={idx} className="hero-text-char" style={{ display: 'inline-block' }}>
-                {char === ' ' ? '\u00A0' : char}
+          <h1 style={{ color: 'var(--color-dark)', margin: 0, textShadow: '0 2px 20px rgba(255,255,255,0.8)', overflow: 'hidden', lineHeight: 1.2 }}>
+            {heroTitle.split(' ').map((word, wordIdx) => (
+              <span key={wordIdx} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                {word.split('').map((char, charIdx) => (
+                  <span key={charIdx} className="hero-text-char" style={{ display: 'inline-block' }}>
+                    {char}
+                  </span>
+                ))}
+                {wordIdx < 2 && (
+                  <span className="hero-text-char" style={{ display: 'inline-block', width: '0.3em' }}>&nbsp;</span>
+                )}
               </span>
             ))}
           </h1>

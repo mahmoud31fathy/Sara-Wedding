@@ -41,7 +41,7 @@ function Ring({ position, rotation, rotationSpeed }) {
   return (
     <group position={position} rotation={rotation} ref={ringRef}>
       <mesh material={goldMaterial}>
-        <torusGeometry args={[1.8, 0.08, 64, 200]} />
+        <torusGeometry args={[1.8, 0.08, 32, 100]} />
       </mesh>
     </group>
   );
@@ -70,7 +70,7 @@ function EternityKnot() {
     <group position={[0, 0, -25]}>
       <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
         <mesh ref={knotRef} material={goldMaterial}>
-          <torusKnotGeometry args={[3, 0.3, 200, 32]} />
+          <torusKnotGeometry args={[3, 0.3, 128, 16]} />
         </mesh>
       </Float>
     </group>
@@ -113,7 +113,7 @@ function FloatingPearls() {
 function VintageDust() {
   return (
     <Sparkles 
-      count={400} 
+      count={150} 
       scale={20} 
       size={3} 
       speed={0.1} 
@@ -127,7 +127,7 @@ function VintageDust() {
 export default function Hero3D() {
   return (
     <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-      <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+      <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 6], fov: 45 }}>
         <Suspense fallback={null}>
           <CameraController />
           <color attach="background" args={['#FAF6F0']} />
