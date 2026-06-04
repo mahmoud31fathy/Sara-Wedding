@@ -76,6 +76,9 @@ function App() {
               {'{ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا }'}
             </p>
             <p style={{ fontSize: '1.5rem', color: 'var(--color-dark)', margin: 0, marginTop: '1rem' }}>بكل الحب والامتنان،</p>
+            <p style={{ fontSize: '1.8rem', color: 'var(--color-dark)', fontFamily: 'var(--font-heading)', margin: 0, marginTop: '0.5rem' }}>
+              يتشرفان بدعوتكم لمشاركتهما فرحة الزفاف.
+            </p>
           </div>
 
           <h1 className="hero-element" dir="rtl" style={{ 
@@ -107,12 +110,7 @@ function App() {
             سارة
           </h1>
           
-          {/* Bottom Invitation Text */}
-          <div className="hero-element" dir="rtl" style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <p style={{ fontSize: '1.8rem', color: 'var(--color-dark)', fontFamily: 'var(--font-heading)', margin: 0 }}>
-              يتشرفان بدعوتكم لمشاركتهما فرحة الزفاف.
-            </p>
-          </div>
+
         </div>
       </section>
 
