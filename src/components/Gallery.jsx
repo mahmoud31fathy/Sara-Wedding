@@ -11,19 +11,18 @@ export default function Gallery() {
       try {
         const res = await fetch('/api/media');
         if (!res.ok) {
-          // It's expected to fail locally without Vercel CLI running the functions
-          if (res.status === 404) {
-            setMedia([]);
-            setLoading(false);
-            return;
-          }
-          throw new Error('Failed to fetch gallery');
+          let errText = await res.text();
+          try {
+            const errJson = JSON.parse(errText);
+            errText = errJson.error || errText;
+          } catch(e) {}
+          throw new Error(`Server returned ${res.status}: ${errText}`);
         }
         const data = await res.json();
         setMedia(data.media || []);
       } catch (err) {
         console.error(err);
-        setError('تعذر تحميل المعرض في الوقت الحالي.');
+        setError(`تعذر تحميل المعرض في الوقت الحالي. (${err.message})`);
       } finally {
         setLoading(false);
       }

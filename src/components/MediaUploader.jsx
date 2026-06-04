@@ -5,6 +5,7 @@ export default function MediaUploader() {
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState('idle'); // idle, uploading, success, error
+  const [errorMessage, setErrorMessage] = useState('');
   const fileInputRef = useRef(null);
 
   const handleFileChange = async (e) => {
@@ -28,7 +29,14 @@ export default function MediaUploader() {
         })
       });
 
-      if (!res.ok) throw new Error('Failed to start upload session');
+      if (!res.ok) {
+        let errText = await res.text();
+        try {
+          const errJson = JSON.parse(errText);
+          errText = errJson.error || errText;
+        } catch(e) {}
+        throw new Error(`Server returned ${res.status}: ${errText}`);
+      }
       const { uploadUrl } = await res.json();
 
       // 2. Upload the raw file directly to Google Drive using XMLHttpRequest for progress
@@ -65,6 +73,7 @@ export default function MediaUploader() {
 
     } catch (err) {
       console.error(err);
+      setErrorMessage(err.message || 'Unknown error occurred');
       setStatus('error');
     } finally {
       setIsUploading(false);
@@ -89,6 +98,9 @@ export default function MediaUploader() {
           <div style={{ color: '#d9534f' }}>
             <AlertCircle size={48} style={{ margin: '0 auto', marginBottom: '1rem' }} />
             <h3 style={{ fontSize: '1.5rem', margin: 0 }}>حدث خطأ أثناء الرفع. يرجى المحاولة مرة أخرى.</h3>
+            <p style={{ marginTop: '0.5rem', direction: 'ltr', fontSize: '0.8rem', background: '#ffebee', padding: '0.5rem', borderRadius: '4px' }}>
+              Error Details: {errorMessage}
+            </p>
             <button className="btn btn-outline" onClick={() => setStatus('idle')} style={{ marginTop: '1rem' }}>حاول مرة أخرى</button>
           </div>
         ) : (
