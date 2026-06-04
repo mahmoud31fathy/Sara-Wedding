@@ -7,28 +7,24 @@ export default function Gallery() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchMedia() {
+    function loadMedia() {
       try {
-        const res = await fetch('/api/media');
-        if (!res.ok) {
-          let errText = await res.text();
-          try {
-            const errJson = JSON.parse(errText);
-            errText = errJson.error || errText;
-          } catch(e) {}
-          throw new Error(`Server returned ${res.status}: ${errText}`);
-        }
-        const data = await res.json();
-        setMedia(data.media || []);
+        const savedUploads = JSON.parse(localStorage.getItem('my_wedding_uploads') || '[]');
+        setMedia(savedUploads);
       } catch (err) {
         console.error(err);
-        setError(`تعذر تحميل المعرض في الوقت الحالي. (${err.message})`);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchMedia();
+    loadMedia();
+
+    window.addEventListener('mediaUploaded', loadMedia);
+
+    return () => {
+      window.removeEventListener('mediaUploaded', loadMedia);
+    };
   }, []);
 
   if (loading) {
@@ -58,8 +54,8 @@ export default function Gallery() {
   return (
     <section id="gallery" style={{ padding: '0 2rem 6rem 2rem', position: 'relative', zIndex: 1 }}>
       <div className="text-center glass-panel" style={{ margin: '0 auto 4rem auto', padding: '2rem', width: 'max-content', maxWidth: '90%' }}>
-        <h2 className="text-gold" style={{ margin: 0 }}>معرض الصور والفيديو</h2>
-        <p style={{ margin: '0 auto', color: 'var(--color-dark)' }}>لحظات شاركتموها معنا.</p>
+        <h2 className="text-gold" style={{ margin: 0 }}>مشاركاتي</h2>
+        <p style={{ margin: '0 auto', color: 'var(--color-dark)' }}>الصور ومقاطع الفيديو التي قمت برفعها.</p>
       </div>
 
       <div style={{ 

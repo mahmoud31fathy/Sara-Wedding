@@ -44,7 +44,7 @@ export default function MediaUploader() {
         const { uploadUrl } = await res.json();
 
         // 2. Upload the raw file directly to Google Drive using XMLHttpRequest for progress
-        await new Promise((resolve, reject) => {
+        const fileMetadata = await new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest();
           xhr.open('PUT', uploadUrl, true);
           
@@ -58,7 +58,12 @@ export default function MediaUploader() {
 
           xhr.onload = () => {
             if (xhr.status >= 200 && xhr.status < 300) {
-              resolve(xhr.response);
+              try {
+                const data = JSON.parse(xhr.response);
+                resolve(data);
+              } catch (e) {
+                resolve(null);
+              }
             } else {
               reject(new Error(`Upload to Google Drive failed (${xhr.status}): ${xhr.responseText}`));
             }
@@ -68,6 +73,19 @@ export default function MediaUploader() {
 
           xhr.send(file);
         });
+
+        if (fileMetadata) {
+          const savedUploads = JSON.parse(localStorage.getItem('my_wedding_uploads') || '[]');
+          savedUploads.unshift({
+            id: fileMetadata.id,
+            name: fileMetadata.name,
+            type: fileMetadata.mimeType?.startsWith('video/') ? 'video' : 'image',
+            webViewLink: fileMetadata.webViewLink,
+            thumbnailLink: fileMetadata.thumbnailLink
+          });
+          localStorage.setItem('my_wedding_uploads', JSON.stringify(savedUploads));
+          window.dispatchEvent(new Event('mediaUploaded'));
+        }
       }
 
       setStatus('success');

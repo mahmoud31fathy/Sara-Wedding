@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       parents: [folderId],
     };
 
-    const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable', {
+    const response = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=resumable&fields=id,name,mimeType,webViewLink,thumbnailLink', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
