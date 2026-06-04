@@ -11,7 +11,7 @@ export default function Guestbook() {
     
     const name = document.getElementById('guest-name').value;
     const message = document.getElementById('wish-message').value;
-    const url = "https://script.google.com/macros/s/AKfycbwkGt7kQ2_BezaH5PiRT_2HaIogPfo_W28J0OroyV6GWX8npeC-3EDiujKaX3SuATs/exec";
+    const url = "https://script.google.com/macros/s/AKfycbyF0tN81vXMHgcEmDy1icTL96nKHHxnYF1sEec7hiTTcESiKZK8u4d1YGULoJsVyv2QzA/exec";
     try {
       await fetch(url, {
         method: 'POST',
