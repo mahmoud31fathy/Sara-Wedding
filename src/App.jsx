@@ -85,7 +85,7 @@ function App() {
             lineHeight: 1.1,
             fontWeight: 400
           }}>
-            سارة
+            محمد
           </h1>
           
           <div className="hero-element" style={{ 
@@ -104,7 +104,7 @@ function App() {
             lineHeight: 1.1,
             fontWeight: 400
           }}>
-            محمد
+            سارة
           </h1>
           
           {/* Bottom Subtitle */}
@@ -137,7 +137,7 @@ function App() {
       {/* Footer */}
       <footer style={{ backgroundColor: 'var(--color-dark)', color: 'var(--color-cream)', textAlign: 'center', padding: '4rem 2rem', position: 'relative', zIndex: 2 }}>
         <p style={{ margin: '0 0 1rem 0', fontFamily: 'var(--font-heading)', fontSize: '1.5rem' }}>لا يسعنا الانتظار للاحتفال معكم.</p>
-        <p style={{ fontSize: '0.9rem', opacity: 0.6, margin: 0 }}>© ٢٠٢٦ سارة ومحمد. صُنع بحب.</p>
+        <p style={{ fontSize: '0.9rem', opacity: 0.6, margin: 0 }}>© ٢٠٢٦ محمد وسارة. صُنع بحب.</p>
       </footer>
     </div>
   )

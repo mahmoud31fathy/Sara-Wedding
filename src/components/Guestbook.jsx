@@ -39,8 +39,8 @@ export default function Guestbook() {
   return (
     <section id="guestbook" style={{ position: 'relative', zIndex: 1, paddingBottom: '4rem', paddingTop: '4rem' }}>
       <div className="text-center glass-panel" style={{ margin: '0 auto 3rem auto', padding: '2rem', width: 'max-content', maxWidth: '90%' }}>
-        <h2 className="text-gold" style={{ margin: 0 }}>أمنيات للعروسين</h2>
-        <p style={{ margin: '0 auto', color: 'var(--color-dark)' }}>اترك رسالة أو أمنية لسارة ومحمد في يومهما الخاص.</p>
+        <h2 className="text-gold" style={{ margin: 0 }}>سجل الزوار</h2>
+        <p style={{ margin: '0 auto', color: 'var(--color-dark)' }}>اترك رسالة أو أمنية لمحمد وسارة في يومهما الخاص.</p>
       </div>
 
       <div className="glass-panel" style={{
@@ -52,7 +52,7 @@ export default function Guestbook() {
           {status === 'success' ? (
             <div className="text-center" style={{ animation: 'fadeIn 0.5s ease-out' }}>
               <h3 className="text-sage" style={{ fontSize: '2rem' }}>شكراً لك!</h3>
-              <p>تم إرسال أمنيتك الجميلة بنجاح. ستسعد سارة ومحمد بقراءتها!</p>
+              <p>تم إرسال أمنيتك الجميلة بنجاح. سيسعد محمد وسارة بقراءتها!</p>
               <button className="btn btn-outline" onClick={() => setStatus('idle')} style={{ marginTop: '1rem' }}>
                 كتابة أمنية أخرى
               </button>
