@@ -14,21 +14,16 @@ export default async function handler(req, res) {
 
     const IMAGES_FOLDER_ID = process.env.VITE_DRIVE_IMAGES_FOLDER_ID;
     const VIDEOS_FOLDER_ID = process.env.VITE_DRIVE_VIDEOS_FOLDER_ID;
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-    // Replace literal \n with actual newlines in case it's escaped in the env
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
 
-    if (!clientEmail || !privateKey || !IMAGES_FOLDER_ID || !VIDEOS_FOLDER_ID) {
-      return res.status(500).json({ error: 'Server configuration error: missing credentials or folder IDs' });
+    if (!clientId || !clientSecret || !refreshToken || !IMAGES_FOLDER_ID || !VIDEOS_FOLDER_ID) {
+      return res.status(500).json({ error: 'Server configuration error: missing OAuth credentials' });
     }
 
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: clientEmail,
-        private_key: privateKey,
-      },
-      scopes: ['https://www.googleapis.com/auth/drive.file'],
-    });
+    const auth = new google.auth.OAuth2(clientId, clientSecret);
+    auth.setCredentials({ refresh_token: refreshToken });
 
     const token = await auth.getAccessToken();
 
