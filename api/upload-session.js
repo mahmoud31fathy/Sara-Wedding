@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     const auth = new google.auth.OAuth2(clientId, clientSecret);
     auth.setCredentials({ refresh_token: refreshToken });
 
-    const token = await auth.getAccessToken();
+    const { token } = await auth.getAccessToken();
 
     const isVideo = mimeType.startsWith('video/');
     const folderId = isVideo ? VIDEOS_FOLDER_ID : IMAGES_FOLDER_ID;
