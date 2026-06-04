@@ -64,9 +64,7 @@ export default function Schedule() {
           <div style={{ width: '100%', height: '350px', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
             <iframe 
               src="https://maps.google.com/maps?q=قاعة%20BENZAY,%20Faqous,%20Al-Sharqia%20Governorate&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0, filter: 'invert(100%) hue-rotate(180deg) brightness(95%) contrast(100%)' }} 
+              className="map-iframe"
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
