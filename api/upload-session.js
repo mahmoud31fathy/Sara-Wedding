@@ -46,6 +46,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
         'X-Upload-Content-Type': mimeType,
+        'Origin': req.headers.origin || 'http://localhost:5173', // CRITICAL: Forward the origin for CORS
       },
       body: JSON.stringify(metadata),
     });
