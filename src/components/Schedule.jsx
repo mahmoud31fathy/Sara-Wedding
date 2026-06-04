@@ -6,10 +6,10 @@ import { Clock, MapPin, GlassWater, Music } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 const events = [
-  { time: '4:00 PM', title: 'Welcome Drinks', icon: <GlassWater size={24} />, desc: 'Refreshments upon arrival.' },
-  { time: '5:00 PM', title: 'The Ceremony', icon: <Clock size={24} />, desc: 'The moment we say "I do".' },
-  { time: '6:30 PM', title: 'Dinner Reception', icon: <MapPin size={24} />, desc: 'A feast to celebrate our union.' },
-  { time: '8:00 PM', title: 'Dancing & Celebration', icon: <Music size={24} />, desc: 'Dance the night away!' },
+  { time: '٧:٠٠ م', title: 'مشروبات الترحيب', icon: <GlassWater size={24} />, desc: 'مرطبات عند الوصول.' },
+  { time: '٨:٠٠ م', title: 'مراسم الزفاف', icon: <Clock size={24} />, desc: 'اللحظة التي نقول فيها "نعم".' },
+  { time: '٩:٣٠ م', title: 'عشاء الاستقبال', icon: <MapPin size={24} />, desc: 'وليمة للاحتفال باتحادنا.' },
+  { time: '١١:٠٠ م', title: 'الرقص والاحتفال', icon: <Music size={24} />, desc: 'سنرقص طوال الليل!' },
 ];
 
 export default function Schedule() {
@@ -35,9 +35,9 @@ export default function Schedule() {
 
   return (
     <section ref={sectionRef} id="schedule" style={{ position: 'relative', zIndex: 1 }}>
-      <div className="text-center glass-panel" style={{ marginBottom: '4rem', padding: '2rem', display: 'inline-block', left: '50%', transform: 'translateX(-50%)' }}>
-        <h2 className="text-gold" style={{ margin: 0 }}>Wedding Schedule</h2>
-        <p style={{ margin: '0 auto', color: 'var(--color-dark)' }}>What to expect on our special day.</p>
+      <div className="text-center glass-panel" style={{ margin: '0 auto 4rem auto', padding: '2rem', width: 'max-content', maxWidth: '90%' }}>
+        <h2 className="text-gold" style={{ margin: 0 }}>جدول الزفاف</h2>
+        <p style={{ margin: '0 auto', color: 'var(--color-dark)' }}>ماذا تتوقعون في يومنا الخاص.</p>
       </div>
 
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -45,7 +45,7 @@ export default function Schedule() {
           <div key={idx} className="event-item flex items-center gap-4 glass-panel" style={{
             marginBottom: '2rem',
             padding: '2rem',
-            borderLeft: '4px solid var(--color-gold)'
+            borderRight: '4px solid var(--color-gold)'
           }}>
             <div style={{
               backgroundColor: 'rgba(255,255,255,0.8)',

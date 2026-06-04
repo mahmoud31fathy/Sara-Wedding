@@ -9,8 +9,8 @@
   --color-dark: #3E362E;
   
   /* Typography */
-  --font-heading: 'Poiret One', cursive, sans-serif;
-  --font-body: 'Didact Gothic', sans-serif;
+  --font-heading: 'Reem Kufi', 'Poiret One', cursive, sans-serif;
+  --font-body: 'Reem Kufi', 'Didact Gothic', sans-serif;
 
   /* Spacing */
   --space-1: 0.25rem;
