@@ -5,7 +5,6 @@ import Countdown from './components/Countdown'
 import Schedule from './components/Schedule'
 import MediaUploader from './components/MediaUploader'
 import Gallery from './components/Gallery'
-import RSVP from './components/RSVP'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -68,7 +67,6 @@ function App() {
         <Schedule />
         <MediaUploader />
         <Gallery />
-        <RSVP />
       </div>
       
       {/* Footer */}
