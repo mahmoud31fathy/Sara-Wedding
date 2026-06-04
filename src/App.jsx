@@ -49,7 +49,6 @@ function App() {
               </span>
             ))}
           </h1>
-          <p className="hero-fade" style={{ fontSize: '1.5rem', color: 'var(--color-dark)', margin: '0.5rem 0', fontWeight: 'bold' }}>١٢ يونيو ٢٠٢٦ • ٨:٠٠ مساءً</p>
         </div>
         
         {/* Scroll Indicator */}
