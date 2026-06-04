@@ -50,7 +50,7 @@ export default function Guestbook() {
       }}>
         <div style={{ position: 'relative', zIndex: 1 }}>
           {status === 'success' ? (
-            <div className="text-center fade-in">
+            <div className="text-center" style={{ animation: 'fadeIn 0.5s ease-out' }}>
               <h3 className="text-sage" style={{ fontSize: '2rem' }}>شكراً لك!</h3>
               <p>تم إرسال أمنيتك الجميلة بنجاح. ستسعد سارة ومحمد بقراءتها!</p>
               <button className="btn btn-outline" onClick={() => setStatus('idle')} style={{ marginTop: '1rem' }}>
@@ -58,7 +58,7 @@ export default function Guestbook() {
               </button>
             </div>
           ) : status === 'error' ? (
-            <div className="text-center fade-in">
+            <div className="text-center" style={{ animation: 'fadeIn 0.5s ease-out' }}>
               <h3 style={{ color: '#d9534f', fontSize: '1.5rem' }}>حدث خطأ</h3>
               <p>عذراً، لم نتمكن من إرسال أمنيتك. يرجى المحاولة مرة أخرى.</p>
               <button className="btn btn-outline" onClick={() => setStatus('idle')} style={{ marginTop: '1rem' }}>
