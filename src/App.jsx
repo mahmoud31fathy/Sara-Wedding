@@ -61,8 +61,8 @@ function App() {
       }}>
         
         {/* Ambient Blurred Background Orbs */}
-        <div className="orb-1" style={{ position: 'absolute', top: '10%', left: '10%', width: '50vw', height: '50vw', background: 'var(--color-pink)', borderRadius: '50%', filter: 'blur(150px)', opacity: 0.6, zIndex: 0 }}></div>
-        <div className="orb-2" style={{ position: 'absolute', bottom: '10%', right: '10%', width: '60vw', height: '60vw', background: 'var(--color-sage)', borderRadius: '50%', filter: 'blur(150px)', opacity: 0.5, zIndex: 0 }}></div>
+        <div className="orb-1" style={{ position: 'absolute', top: '10%', left: '10%', width: '50vw', height: '50vw', background: 'var(--color-pink)', borderRadius: '50%', filter: 'blur(60px)', opacity: 0.4, zIndex: 0 }}></div>
+        <div className="orb-2" style={{ position: 'absolute', bottom: '10%', right: '10%', width: '60vw', height: '60vw', background: 'var(--color-sage)', borderRadius: '50%', filter: 'blur(60px)', opacity: 0.3, zIndex: 0 }}></div>
 
         {/* Floating Particles */}
         <MagicDust />
