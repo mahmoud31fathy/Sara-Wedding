@@ -3,13 +3,37 @@ import React, { useState } from 'react';
 export default function Guestbook() {
   const [status, setStatus] = useState('idle');
 
-  const handleSubmit = (e) => {
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
-    // Simulate network request
-    setTimeout(() => {
+    
+    const name = document.getElementById('guest-name').value;
+    const message = document.getElementById('wish-message').value;
+
+    const url = "https://script.google.com/macros/s/AKfycbyF0tN81vXMHgcEmDy1icTL96nKHHxnYF1sEec7hiTTcESiKZK8u4d1YGULoJsVyv2QzA/exec";
+
+    try {
+      await fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          name: name,
+          message: message
+        })
+      });
+      
+      // no-cors doesn't return a readable response, but if it didn't throw, it likely succeeded
       setStatus('success');
-    }, 1500);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error.message);
+      setStatus('error');
+    }
   };
 
   return (
@@ -31,6 +55,14 @@ export default function Guestbook() {
               <p>تم إرسال أمنيتك الجميلة بنجاح. ستسعد سارة ومحمد بقراءتها!</p>
               <button className="btn btn-outline" onClick={() => setStatus('idle')} style={{ marginTop: '1rem' }}>
                 كتابة أمنية أخرى
+              </button>
+            </div>
+          ) : status === 'error' ? (
+            <div className="text-center fade-in">
+              <h3 style={{ color: '#d9534f', fontSize: '1.5rem' }}>حدث خطأ</h3>
+              <p>عذراً، لم نتمكن من إرسال أمنيتك. يرجى المحاولة مرة أخرى.</p>
+              <button className="btn btn-outline" onClick={() => setStatus('idle')} style={{ marginTop: '1rem' }}>
+                حاول مرة أخرى
               </button>
             </div>
           ) : (
