@@ -9,62 +9,69 @@ export default function MediaUploader() {
   const fileInputRef = useRef(null);
 
   const handleFileChange = async (e) => {
-    const files = e.target.files;
+    const files = Array.from(e.target.files);
     if (!files || files.length === 0) return;
 
     setIsUploading(true);
     setStatus('uploading');
     setProgress(0);
-
-    const file = files[0]; // For simplicity, handle one file at a time right now
+    setErrorMessage('');
 
     try {
-      // 1. Get Resumable Upload URL from our backend
-      const res = await fetch('/api/upload-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fileName: file.name,
-          mimeType: file.type,
-        })
-      });
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const baseProgress = (i / files.length) * 100;
+        const progressMultiplier = 1 / files.length;
 
-      if (!res.ok) {
-        let errText = await res.text();
-        try {
-          const errJson = JSON.parse(errText);
-          errText = errJson.error || errText;
-        } catch(e) {}
-        throw new Error(`Server returned ${res.status}: ${errText}`);
+        // 1. Get Resumable Upload URL from our backend
+        const res = await fetch('/api/upload-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fileName: file.name,
+            mimeType: file.type,
+          })
+        });
+
+        if (!res.ok) {
+          let errText = await res.text();
+          try {
+            const errJson = JSON.parse(errText);
+            errText = errJson.error || errText;
+          } catch(e) {}
+          throw new Error(`Server returned ${res.status}: ${errText}`);
+        }
+        const { uploadUrl } = await res.json();
+
+        // 2. Upload the raw file directly to Google Drive using XMLHttpRequest for progress
+        await new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('PUT', uploadUrl, true);
+          
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) {
+              const filePercent = (e.loaded / e.total) * 100;
+              const totalPercent = baseProgress + (filePercent * progressMultiplier);
+              setProgress(Math.round(totalPercent));
+            }
+          };
+
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              resolve(xhr.response);
+            } else {
+              reject(new Error(`Upload to Google Drive failed (${xhr.status}): ${xhr.responseText}`));
+            }
+          };
+
+          xhr.onerror = () => reject(new Error('Network error during upload'));
+
+          xhr.send(file);
+        });
       }
-      const { uploadUrl } = await res.json();
-
-      // 2. Upload the raw file directly to Google Drive using XMLHttpRequest for progress
-      await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('PUT', uploadUrl, true);
-        
-        xhr.upload.onprogress = (e) => {
-          if (e.lengthComputable) {
-            const percentComplete = (e.loaded / e.total) * 100;
-            setProgress(Math.round(percentComplete));
-          }
-        };
-
-        xhr.onload = () => {
-          if (xhr.status >= 200 && xhr.status < 300) {
-            resolve(xhr.response);
-          } else {
-            reject(new Error(`Upload to Google Drive failed (${xhr.status}): ${xhr.responseText}`));
-          }
-        };
-
-        xhr.onerror = () => reject(new Error('Network error during upload'));
-
-        xhr.send(file);
-      });
 
       setStatus('success');
+      setProgress(100);
       // Reset after 3 seconds
       setTimeout(() => {
         setStatus('idle');
@@ -122,6 +129,7 @@ export default function MediaUploader() {
               ref={fileInputRef} 
               onChange={handleFileChange}
               accept="image/*,video/*"
+              multiple
               style={{ display: 'none' }}
             />
 
@@ -147,7 +155,7 @@ export default function MediaUploader() {
             ) : (
               <>
                 <UploadCloud size={48} color="var(--color-gold)" style={{ margin: '0 auto', marginBottom: '1rem' }} />
-                <h3 style={{ color: 'var(--color-dark)', margin: 0 }}>اضغط هنا لاختيار صورة أو فيديو</h3>
+                <h3 style={{ color: 'var(--color-dark)', margin: 0 }}>اضغط هنا لاختيار الصور ومقاطع الفيديو</h3>
                 <p style={{ fontSize: '0.9rem', color: 'rgba(0,0,0,0.6)', marginTop: '0.5rem' }}>يتم الرفع بالجودة الأصلية إلى السحابة مباشرة</p>
               </>
             )}
