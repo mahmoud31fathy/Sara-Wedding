@@ -66,7 +66,7 @@ export default function Schedule() {
               src="https://maps.google.com/maps?q=قاعة%20BENZAY,%20Faqous,%20Al-Sharqia%20Governorate&t=&z=16&ie=UTF8&iwloc=&output=embed" 
               width="100%" 
               height="100%" 
-              style={{ border: 0 }} 
+              style={{ border: 0, filter: 'invert(100%) hue-rotate(180deg) brightness(95%) contrast(100%)' }} 
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
