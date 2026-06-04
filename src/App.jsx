@@ -69,19 +69,19 @@ function App() {
 
         <div className="text-center parallax-text" style={{ position: 'relative', zIndex: 2 }}>
           
-          {/* Top Ornament */}
-          <div className="hero-element rotating-ornament" style={{ marginBottom: '2rem', color: 'var(--color-gold)', display: 'flex', justifyContent: 'center' }}>
-            <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
-              <rect x="20" y="20" width="60" height="60" transform="rotate(45 50 50)" stroke="currentColor" strokeWidth="1" />
-              <rect x="20" y="20" width="60" height="60" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-              <circle cx="50" cy="50" r="5" fill="currentColor" />
-            </svg>
+          {/* Top Invitation Text */}
+          <div className="hero-element" dir="rtl" style={{ marginBottom: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.8rem' }}>
+            <p style={{ fontSize: '1.1rem', color: 'var(--color-dark)', margin: 0, opacity: 0.8 }}>بسم الله الرحمن الرحيم</p>
+            <p style={{ fontSize: '1.4rem', color: 'var(--color-gold)', fontFamily: 'var(--font-heading)', margin: 0, textAlign: 'center', maxWidth: '800px', lineHeight: 1.6 }}>
+              {'{ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا }'}
+            </p>
+            <p style={{ fontSize: '1.5rem', color: 'var(--color-dark)', margin: 0, marginTop: '1rem' }}>بكل الحب والامتنان،</p>
           </div>
 
           <h1 className="hero-element" dir="rtl" style={{ 
             color: 'var(--color-dark)', 
             margin: '0', 
-            fontSize: 'clamp(5rem, 15vw, 10rem)',
+            fontSize: 'clamp(4rem, 12vw, 8rem)',
             lineHeight: 1.1,
             fontWeight: 400
           }}>
@@ -90,9 +90,9 @@ function App() {
           
           <div className="hero-element" style={{ 
             color: 'var(--color-gold)', 
-            fontSize: '3rem', 
+            fontSize: '2.5rem', 
             fontFamily: 'var(--font-heading)',
-            margin: '-1rem 0'
+            margin: '-0.5rem 0'
           }}>
             و
           </div>
@@ -100,27 +100,18 @@ function App() {
           <h1 className="hero-element" dir="rtl" style={{ 
             color: 'var(--color-dark)', 
             margin: '0', 
-            fontSize: 'clamp(5rem, 15vw, 10rem)',
+            fontSize: 'clamp(4rem, 12vw, 8rem)',
             lineHeight: 1.1,
             fontWeight: 400
           }}>
             سارة
           </h1>
           
-          {/* Bottom Subtitle */}
-          <div className="hero-element" style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <span style={{ 
-              fontSize: '1.2rem', 
-              color: 'var(--color-dark)', 
-              letterSpacing: '5px',
-              textTransform: 'uppercase',
-              opacity: 0.9,
-              borderTop: '1px solid var(--color-gold)',
-              borderBottom: '1px solid var(--color-gold)',
-              padding: '0.5rem 2rem'
-            }}>
-              نحتفل بحبنا
-            </span>
+          {/* Bottom Invitation Text */}
+          <div className="hero-element" dir="rtl" style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <p style={{ fontSize: '1.8rem', color: 'var(--color-dark)', fontFamily: 'var(--font-heading)', margin: 0 }}>
+              يتشرفان بدعوتكم لمشاركتهما فرحة الزفاف.
+            </p>
           </div>
         </div>
       </section>
