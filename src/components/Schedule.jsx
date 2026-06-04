@@ -58,12 +58,12 @@ export default function Schedule() {
           
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', color: 'var(--color-dark)', fontSize: '1.2rem', marginBottom: '2rem' }}>
             <MapPin size={24} color="var(--color-gold)" />
-            <span>فندق فورسيزونز نايل بلازا، القاهرة</span>
+            <span>قاعة BENZAY، البيروم، مركز فاقوس، الشرقية</span>
           </div>
 
           <div style={{ width: '100%', height: '350px', borderRadius: 'var(--radius-md)', overflow: 'hidden', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.0624021204646!2d31.22692227632616!3d30.035035274928236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840c83a7f6f17%3A0xc3c5b5dc26f5d341!2sFour%20Seasons%20Hotel%20Cairo%20at%20Nile%20Plaza!5e0!3m2!1sen!2seg!4v1717524941655!5m2!1sen!2seg" 
+              src="https://maps.google.com/maps?q=قاعة%20BENZAY,%20Faqous,%20Al-Sharqia%20Governorate&t=&z=16&ie=UTF8&iwloc=&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
