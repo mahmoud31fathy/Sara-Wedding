@@ -55,7 +55,7 @@ export default function MediaUploader() {
           if (xhr.status >= 200 && xhr.status < 300) {
             resolve(xhr.response);
           } else {
-            reject(new Error('Upload to Google Drive failed'));
+            reject(new Error(`Upload to Google Drive failed (${xhr.status}): ${xhr.responseText}`));
           }
         };
 
